@@ -35,7 +35,7 @@ return {
   },
 
   {
-    "williamboman/mason.nvim",
+    "mason-org/mason.nvim",
     opts = {
       ensure_installed = {
         "phpcs",
@@ -58,11 +58,10 @@ return {
     },
     opts = function()
       local dap = require("dap")
-      local path = require("mason-registry").get_package("php-debug-adapter"):get_install_path()
       dap.adapters.php = {
         type = "executable",
-        command = "node",
-        args = { path .. "/extension/out/phpDebug.js" },
+        command = vim.fn.exepath("php-debug-adapter"),
+        args = {},
       }
     end,
   },
